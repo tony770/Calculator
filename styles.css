@@ -1,0 +1,47 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 35rem;
+    height: 45rem;
+    border-style: solid;
+    padding: 10px;
+}
+
+#display {
+    display: flex;
+    width: 95%;
+    height: 8rem;
+    border-style: solid;
+    font-family: Arial, sans-serif;
+    font-size: 85px;
+    direction: rtl;
+    margin-top: 20px;
+    overflow: auto;
+}
+
+.keys {
+    display: flex;
+    width: 95%;
+    height: 32rem;
+    border: 1px solid;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+button {
+    flex: 1 0 25%;
+    font-family: Arial, sans-serif;
+    padding: 10px;
+    font-size: 30px;
+    border: 1px, solid, #ccc;
+    text-align: center;
+}
