@@ -3,9 +3,17 @@ let num2 = 0;
 let op = "";
 
 let display = document.getElementById('display');
-let buttons = document.querySelectorAll('.number');
+let numButtons = document.querySelectorAll('.number');
 
-buttons.forEach(button => {
+numButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        display.textContent += button.textContent;
+    });
+});
+
+let opButtons = document.querySelectorAll('.op');
+
+opButtons.forEach(button => {
     button.addEventListener('click', () => {
         display.textContent += button.textContent;
     });

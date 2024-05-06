@@ -17,14 +17,13 @@ body {
 }
 
 #display {
-    display: flex;
     width: 95%;
     height: 8rem;
     border-style: solid;
     font-family: Arial, sans-serif;
     font-size: 85px;
-    direction: rtl;
     margin-top: 20px;
+    text-align: right;
     overflow: auto;
 }
 
