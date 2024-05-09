@@ -40,6 +40,14 @@ opButtons.forEach(button => {
     });
 });
 
+let equal = document.querySelector('.equal');
+
+equal.addEventListener('click', () => {
+    if(op && num2)
+        {
+            display.textContent = operate(num1, num2, op);
+        }
+})
 
 
 
@@ -66,24 +74,24 @@ function divide(a, b)
 
 function operate(a, b, sym)
 {
-    a = parseInt(a);
-    b = parseInt(b);
+    a = parseFloat(a);
+    b = parseFloat(b);
     switch (sym) {
         case "+":
             display.textContent = '';
-            add(a, b);
+             return add(a, b);
             break;
         case "-":
             display.textContent = '';
-            subtract(a, b);
+            return subtract(a, b);
             break;
         case "*":
             display.textContent = '';
-            multiply(a, b);
+            return multiply(a, b);
             break;
         case "/":
             display.textContent = '';
-            divide(a, b);
+            return divide(a, b);
             break;
         default:
             display.textContent = 'error';
