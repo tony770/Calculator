@@ -49,7 +49,14 @@ equal.addEventListener('click', () => {
         }
 })
 
+let clear = document.querySelector('.clear');
 
+clear.addEventListener('click', () => {
+    display.textContent = '0';
+    num1 = '';
+    num2 = '';
+    op = '';
+})
 
 
 function add(a, b)
