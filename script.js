@@ -1,5 +1,5 @@
-let num1 = '';
-let num2 = '';
+let prev = '';
+let curr = '0';
 let op = '';
 
 let display = document.getElementById('display');
@@ -7,16 +7,8 @@ let numButtons = document.querySelectorAll('.number');
 
 numButtons.forEach(button => {
     button.addEventListener('click', () => {
-        if(!op)
-        {
-            num1 += button.textContent;
-            display.textContent = num1;
-        }
-        else
-        {
-            num2 += button.textContent;
-            display.textContent = num2;
-        }
+        curr += button.textContent;
+        updateDisplay(curr);
     });
 });
 
@@ -24,85 +16,64 @@ let opButtons = document.querySelectorAll('.op');
 
 opButtons.forEach(button => {
     button.addEventListener('click', () => {
-        if(op && num1 && num2)
-        {
-            display.textContent = operate(num1, num2, op);
+            prev = curr;
+            curr = '0';
             op = button.textContent;
-        }
-        else if(op && num1)
-        {
-            op = button.textContent;
-        }
-        else
-        {
-            op = button.textContent;
-        }
     });
 });
 
 let equal = document.querySelector('.equal');
 
 equal.addEventListener('click', () => {
-    if(op && num2)
-        {
-            display.textContent = operate(num1, num2, op);
-        }
+    const result = operate(parseFloat(prev), parseFloat(curr), op)
+    curr = result.toString();
+    updateDisplay(result);
+    
 })
 
 let clear = document.querySelector('.clear');
 
 clear.addEventListener('click', () => {
-    display.textContent = '0';
-    num1 = '';
-    num2 = '';
+    prev = '';
+    curr = '0';
     op = '';
+    updateDisplay(curr);
 })
-
-
-function add(a, b)
-{
-    return a + b;
-}
-
-function subtract(a, b)
-{
-    return a - b;
-}
-
-function multiply(a, b)
-{
-    return a * b;
-}
-
-function divide(a, b)
-{
-    return a / b;
-}
 
 function operate(a, b, sym)
 {
-    a = parseFloat(a);
-    b = parseFloat(b);
+    prev = '';
+    curr = '0';
+    op = '';
     switch (sym) {
         case "+":
-            display.textContent = '';
-             return add(a, b);
+            return a + b;
             break;
         case "-":
-            display.textContent = '';
-            return subtract(a, b);
+            return a - b;
             break;
         case "*":
-            display.textContent = '';
-            return multiply(a, b);
+            return a * b;
             break;
         case "/":
-            display.textContent = '';
-            return divide(a, b);
-            break;
-        default:
-            display.textContent = 'error';
+            if(curr == 0)
+                {
+                    return "undefined";
+                }
+            else
+                {
+                    return Math.round((a / b) * 100) / 100 ;
+                }
             break;
     }
+}
+
+function updateDisplay(text)
+{   
+    const maxLength = 10;
+    const numValue = parseFloat(text);
+    const displayText = numValue.toString();
+
+    display.textContent = displayText.substring(0, maxLength);
 }
 
