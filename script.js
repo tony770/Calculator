@@ -1,49 +1,55 @@
 let prev = '';
-let curr = '0';
+let curr = '';
 let op = '';
 
 let display = document.getElementById('display');
-let numButtons = document.querySelectorAll('.number');
 
+let numButtons = document.querySelectorAll('.number');
 numButtons.forEach(button => {
     button.addEventListener('click', () => {
         curr += button.textContent;
-        updateDisplay(curr);
+        display.textContent = curr;
     });
 });
 
 let opButtons = document.querySelectorAll('.op');
-
 opButtons.forEach(button => {
     button.addEventListener('click', () => {
             prev = curr;
-            curr = '0';
+            curr = '';
             op = button.textContent;
     });
 });
 
 let equal = document.querySelector('.equal');
-
 equal.addEventListener('click', () => {
-    const result = operate(parseFloat(prev), parseFloat(curr), op)
-    curr = result.toString();
-    updateDisplay(result);
-    
+    const result = operate(Number.parseFloat(prev), Number.parseFloat(curr), op)
+    curr = result;
+    display.textContent = curr.toString();
 })
 
 let clear = document.querySelector('.clear');
-
 clear.addEventListener('click', () => {
     prev = '';
-    curr = '0';
+    curr = '';
     op = '';
-    updateDisplay(curr);
+    display.textContent = '0';
+})
+
+let decimal = document.querySelector('.decimal');
+decimal.addEventListener('click', () => {
+    if(!curr.includes('.'))
+        {
+            curr += '.';
+            display.textContent = curr;
+        }
+    
 })
 
 function operate(a, b, sym)
 {
     prev = '';
-    curr = '0';
+    curr = '';
     op = '';
     switch (sym) {
         case "+":
@@ -56,24 +62,16 @@ function operate(a, b, sym)
             return a * b;
             break;
         case "/":
-            if(curr == 0)
+            if(b == 0)
                 {
-                    return "undefined";
+                    return 'undefined';
                 }
             else
                 {
-                    return Math.round((a / b) * 100) / 100 ;
+                    return Math.round((a / b) * 10000) / 10000 ;
                 }
             break;
     }
 }
 
-function updateDisplay(text)
-{   
-    const maxLength = 10;
-    const numValue = parseFloat(text);
-    const displayText = numValue.toString();
-
-    display.textContent = displayText.substring(0, maxLength);
-}
 

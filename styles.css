@@ -17,6 +17,8 @@ body {
 }
 
 #display {
+    display: flex;
+    align-items: center;
     width: 95%;
     height: 8rem;
     border-style: solid;
@@ -24,7 +26,8 @@ body {
     font-size: 85px;
     margin-top: 20px;
     text-align: right;
-    overflow: auto;
+    overflow: hidden;
+    justify-content: flex-end;
 }
 
 .keys {
