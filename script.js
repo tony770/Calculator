@@ -46,6 +46,20 @@ decimal.addEventListener('click', () => {
     
 })
 
+let pn = document.querySelector('.PN');
+pn.addEventListener('click', () => {
+    if(curr[0] == '-')
+        {
+            curr.slice(1);
+            display.textContent = curr;
+        }
+    else
+        {
+            curr = '-' + curr;
+            display.textContent = curr;
+        }
+})
+
 function operate(a, b, sym)
 {
     prev = '';
